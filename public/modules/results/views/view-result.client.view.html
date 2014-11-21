@@ -1,0 +1,11 @@
+<section data-ng-controller="ResultsController" data-ng-init="findOne()">
+	<div class="page-header">
+		<h1 data-ng-bind="result.name"></h1>
+	</div>
+	<small>
+		<em class="text-muted">
+			Posted on
+			<span data-ng-bind="result.created | date:'mediumDate'"></span>
+		</em>
+	</small>
+</section>
