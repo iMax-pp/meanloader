@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('results').controller('HeaderController', ['$scope',
+angular.module('core').controller('HeaderController', ['$scope',
     function($scope) {
         $scope.isCollapsed = false;
 
