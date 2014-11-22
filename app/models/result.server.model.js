@@ -10,15 +10,25 @@ var mongoose = require('mongoose'),
  * Result Schema
  */
 var ResultSchema = new Schema({
-    name: {
-        type: String,
-        default: '',
-        required: 'Please fill Result name',
-        trim: true
+    launch: {
+        type: Schema.Types.ObjectId,
+        ref: 'Launch',
+        required: 'A Result requires to be linked to a Launch'
     },
-    created: {
-        type: Date,
-        default: Date.now
+    nb_hits: {
+        type: Number,
+        default: 0,
+        required: 'A Result requires a Number of Hits'
+    },
+    mean_time: {
+        type: Number,
+        default: 0,
+        required: 'A Result requires a Mean Response Time'
+    },
+    ninety_percentile: {
+        type: Number,
+        default: 0,
+        required: 'A Result requires a 90 percentile Response Time'
     }
 });
 
