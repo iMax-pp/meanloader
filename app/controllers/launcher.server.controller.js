@@ -59,10 +59,12 @@ exports.run = function(req, res) {
 };
 
 /**
- * List Launches
+ * List Running Launches
  */
-exports.list = function(req, res) {
-    Launch.find().sort('-start_date').exec(function(err, results) {
+exports.listRunning = function(req, res) {
+    Launch.find({
+        in_progress: true
+    }).sort('-start_date').exec(function(err, results) {
         if (err) {
             return res.status(500).send({
                 message: errorHandler.getErrorMessage(err)
