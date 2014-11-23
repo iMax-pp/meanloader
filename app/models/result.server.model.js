@@ -17,17 +17,18 @@ var ResultSchema = new Schema({
     },
     nb_hits: {
         type: Number,
-        default: 0,
         required: 'A Result requires a Number of Hits'
+    },
+    nb_ko: {
+        type: Number,
+        required: 'A Result requires a Number of KO'
     },
     mean_time: {
         type: Number,
-        default: 0,
         required: 'A Result requires a Mean Response Time'
     },
     ninety_percentile: {
         type: Number,
-        default: 0,
         required: 'A Result requires a 90 percentile Response Time'
     }
 });

@@ -1,16 +1,9 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope',
-    function($scope) {
-        $scope.isCollapsed = false;
-
-        $scope.toggleCollapsibleMenu = function() {
-            $scope.isCollapsed = !$scope.isCollapsed;
+angular.module('core').controller('HeaderController', ['$scope', '$location',
+    function($scope, $location) {
+        $scope.isActive = function(viewLocation) {
+            return viewLocation === $location.path();
         };
-
-        // Collapsing the menu after navigation
-        $scope.$on('$stateChangeSuccess', function() {
-            $scope.isCollapsed = false;
-        });
     }
 ]);

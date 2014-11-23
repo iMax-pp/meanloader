@@ -10,6 +10,10 @@ var mongoose = require('mongoose'),
  * Launch Schema
  */
 var LaunchSchema = new Schema({
+    name: {
+        type: String,
+        required: 'A Launch requires a Name'
+    },
     server: {
         type: String,
         required: 'A Launch requires a Server'

@@ -16,6 +16,7 @@ var mongoose = require('mongoose'),
  */
 var createLaunch = function(req, res) {
     var launch = new Launch({
+        name: req.param('name'),
         server: req.param('server'),
         api: req.param('api'),
         duration: req.param('duration', 10) * 60, // In seconds

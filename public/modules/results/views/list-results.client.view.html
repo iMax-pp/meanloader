@@ -1,14 +1,33 @@
 <section data-ng-controller="ResultsController" data-ng-init="find()">
     <div class="page-header">
-        <h1>Load Results</h1>
+        <h1>Load Test Results</h1>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="result in results" data-ng-href="#!/results/{{result._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="result.created | date:'medium'"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="result.name"></h4>
+        <a data-ng-repeat="result in results" data-ng-href="#!/results/{{result._id}}" class="list-group-item row">
+            <h4 class="list-group-item-heading col-md-4">
+            {{result.launch.name}}
+            <small>{{result.launch.server}}{{result.launch.api}}</small>
+            <br>
+            <small>Launched on {{result.launch.start_date | date:'medium'}}</small>
+            </h4>
+            <div class="list-group-item-text col-md-3">
+                <dl class="dl-horizontal">
+                    <dt>Duration</dt>
+                    <dd>{{result.launch.duration/60}} min</dd>
+                    <dt>Users</dt>
+                    <dd>{{result.launch.nb_users}}</dd>
+                </dl>
+            </div>
+            <div class="list-group-item-text col-md-4">
+                <dl class="dl-horizontal">
+                    <dt>Nb Hits</dt>
+                    <dd>{{result.nb_hits | number:0}} ({{result.nb_ko | number:0}} KO)</dd>
+                    <dt>Mean Time</dt>
+                    <dd>{{result.mean_time | number:2}} ms</dd>
+                    <dt>90 Percentile</dt>
+                    <dd>{{result.ninety_percentile | number:2}} ms</dd>
+                </dl>
+            </div>
         </a>
     </div>
 </section>

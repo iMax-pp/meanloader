@@ -1,10 +1,8 @@
 'use strict';
 
 //Setting up route
-angular.module('results').config(['$stateProvider', '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/results');
-
+angular.module('results').config(['$stateProvider',
+    function($stateProvider) {
         // Results state routing
         $stateProvider.
         state('listResults', {

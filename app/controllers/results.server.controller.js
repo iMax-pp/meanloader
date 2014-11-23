@@ -27,6 +27,9 @@ exports.create = function(launch) {
             return;
         }
         var nbHits = hits.length;
+        var nbKO = hits.filter(function(hit) {
+            return hit.status === 'KO';
+        }).length;
         var totalTime = hits.map(function(hit) {
             return hit.duration;
         }).reduce(function(prev, curr, index, array) {
@@ -34,15 +37,10 @@ exports.create = function(launch) {
         });
         var meanTime = totalTime / nbHits;
         var ninetyPercentile = hits[Math.round(nbHits * 90 / 100)].duration;
-        console.log(
-            'nbHits: ' + nbHits +
-            ', hits: ' + hits +
-            ', totalTime: ' + totalTime +
-            ', meanTime: ' + meanTime +
-            ', ninetyPercentile: ' + ninetyPercentile);
         Result.create({
             launch: launch,
             nb_hits: nbHits,
+            nb_ko: nbKO,
             mean_time: meanTime,
             ninety_percentile: ninetyPercentile
         }, function(err, result) {
@@ -64,7 +62,7 @@ exports.read = function(req, res) {
  * List of Results
  */
 exports.list = function(req, res) {
-    Result.find().sort('-launch.start_date').populate('launch').exec(function(err, results) {
+    Result.find().populate('launch').sort('-launch').exec(function(err, results) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)

@@ -25,7 +25,7 @@ exports.create = function(launch, date, respTime, status) {
 };
 
 /**
- * List of Hits
+ * List of Hits by Launcher
  */
 exports.list = function(req, res) {
     Hit.find({

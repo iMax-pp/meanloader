@@ -1,11 +1,24 @@
 <section data-ng-controller="ResultsController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="result.name"></h1>
-	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="result.created | date:'mediumDate'"></span>
-		</em>
-	</small>
+    <div class="page-header">
+        <h1>
+            {{result.launch.name}}
+            <small>{{result.launch.server}}{{result.launch.api}}</small>
+        </h1>
+        <small>
+            <em class="text-muted">
+                Launched on
+                <span data-ng-bind="result.launch.start_date | date:'mediumDate'"></span>
+            </em>
+        </small>
+    </div>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>Nb Hits</dt>
+            <dd>{{result.nb_hits | number:0}} ({{result.nb_ko | number:0}} KO)</dd>
+            <dt>Mean Time</dt>
+            <dd>{{result.mean_time | number:2}} ms</dd>
+            <dt>90 Percentile</dt>
+            <dd>{{result.ninety_percentile | number:2}} ms</dd>
+        </dl>
+    </div>
 </section>
