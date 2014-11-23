@@ -15,7 +15,7 @@ var runHit = function(id, launch, eventEmitter) {
     request(url, function(error, resp, body) {
         var diff = process.hrtime(start);
         var respTime = (diff[0] * 1e9 + diff[1]) / 1000000.0;
-        var status = error === undefined ? 'KO' : 'OK';
+        var status = !error && resp.statusCode === 200 ? 'OK' : 'KO';
         hits.create(launch, date, respTime, status);
         eventEmitter.emit('runHit' + id);
     });
