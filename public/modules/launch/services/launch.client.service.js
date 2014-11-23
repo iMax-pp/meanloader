@@ -8,7 +8,7 @@ angular.module('launch').factory('Launch', ['$resource',
                 name: '@name',
                 server: '@server',
                 api: '@api',
-                users: '@users',
+                nb_users: '@nb_users',
                 duration: '@duration'
             }),
         };

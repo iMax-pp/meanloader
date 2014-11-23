@@ -20,7 +20,7 @@ var createLaunch = function(req, res) {
         server: req.param('server'),
         api: req.param('api'),
         duration: req.param('duration', 10) * 60, // In seconds
-        nb_users: req.param('users', 1)
+        nb_users: req.param('nb_users', 1)
     });
     launch.save(function(err, newLaunch) {
         if (err) {
