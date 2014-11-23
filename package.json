@@ -2,7 +2,7 @@
     "name": "meanloader",
     "description": "MEAN.JS Application to Test Load APIs",
     "version": "0.0.1",
-    "author": "Maxime Simon <maxime.simon@sopra.com>",
+    "author": "Maxime Simon <simon.maxime@gmail.com>",
     "engines": {
         "node": "0.10.x",
         "npm": "1.4.x"
