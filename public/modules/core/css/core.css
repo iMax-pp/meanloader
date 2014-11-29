@@ -1,6 +1,3 @@
-.content {
-	margin-top: 50px;
-}
 .undecorated-link:hover {
 	text-decoration: none;
 }
@@ -8,8 +5,21 @@
 	display: none !important;
 }
 .ng-invalid.ng-dirty {
-	border-color: #FA787E;
+	border-color: #fa787e;
 }
 .ng-valid.ng-dirty {
-	border-color: #78FA89;
+	border-color: #78fa89;
+}
+
+.navbar {
+	border-radius: 0;
+}
+.page-header {
+	margin-top: 0;
+}
+.jumbotron {
+	padding: 1em 0 1.5em;
+}
+.jumbotron h1 {
+	font-size: 3em;
 }
