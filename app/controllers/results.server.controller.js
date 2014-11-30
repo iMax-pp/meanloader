@@ -52,10 +52,62 @@ exports.create = function(launch) {
 };
 
 /**
- * Show the current Result
+ * Return the current Result with detailed stats
  */
 exports.read = function(req, res) {
-    res.jsonp(req.result);
+    Hit.aggregate([{
+        $match: {
+            launch: req.result.launch._id
+        }
+    }, {
+        $group: {
+            _id: {
+                hour: {
+                    $hour: '$date'
+                },
+                minute: {
+                    $minute: '$date'
+                },
+                second: {
+                    $second: '$date'
+                }
+            },
+            meanTime: {
+                $avg: '$duration'
+            },
+            nbOK: {
+                $sum: {
+                    $cond: [{
+                            $eq: ['$status', 'OK']
+                        },
+                        1, 0
+                    ]
+                }
+            },
+            nbKO: {
+                $sum: {
+                    $cond: [{
+                            $eq: ['$status', 'KO']
+                        },
+                        1, 0
+                    ]
+                }
+            }
+        }
+    }, {
+        $sort: {
+            _id: 1
+        }
+    }], function(err, stats) {
+        if (err) {
+            console.error(new Error('Unable to find hits of given result: ' + err));
+            return;
+        }
+        res.jsonp({
+            result: req.result,
+            stats: stats
+        });
+    });
 };
 
 /**
