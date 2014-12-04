@@ -21,11 +21,7 @@
             <dd>{{result.result.ninety_percentile | number:2}} ms</dd>
         </dl>
     </div>
-    <div>
-        <ul>
-            <li data-ng-repeat="stat in result.stats">
-                {{stat}}
-            </li>
-        </ul>
+    <div class="row">
+        <div id="statsChart" style="min-width: 310px; height: 500px; margin: 0 auto"></div>
     </div>
 </section>
