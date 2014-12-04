@@ -23,3 +23,8 @@
 .jumbotron h1 {
 	font-size: 3em;
 }
+
+#statsChart {
+	height: 500px;
+	margin: 0 auto;
+}
