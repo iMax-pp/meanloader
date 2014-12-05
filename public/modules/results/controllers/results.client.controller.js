@@ -26,25 +26,26 @@ angular.module('results').controller('ResultsController', ['$scope', '$statePara
                 });
             });
         };
+        $scope.find();
+
+        // Refresh data every minute
+        var refresh = setInterval(function() {
+            $scope.find();
+        }, 60000);
+        $scope.$on('$destroy', function() {
+            clearInterval(refresh);
+        });
 
         // Find existing Result
         $scope.findOne = function() {
             $scope.result = Results.get({
                 resultId: $stateParams.resultId
-            }, function(result) {
+            }, function() {
                 drawChart();
-                return result;
             });
         };
 
-        // Refresh data every 5 seconds
-        var refresh = setInterval(function() {
-            $scope.find();
-        }, 5000);
-        $scope.$on('$destroy', function() {
-            clearInterval(refresh);
-        });
-
+        // Draw Result stats chart
         var drawChart = function() {
             $('#statsChart').highcharts({
                 title: {
@@ -87,7 +88,7 @@ angular.module('results').controller('ResultsController', ['$scope', '$statePara
                 plotOptions: {
                     area: {
                         stacking: 'normal',
-                        lineColor: '#666666',
+                        lineColor: 'hsl(0, 0%, 40%)',
                         lineWidth: 0.3,
                         marker: {
                             enabled: false
@@ -98,7 +99,7 @@ angular.module('results').controller('ResultsController', ['$scope', '$statePara
                     yAxis: 0,
                     type: 'area',
                     name: 'KO',
-                    color: 'hsla(360, 100%, 50%, 0.75)',
+                    color: 'hsla(2, 64%, 58%, 0.90)',
                     data: $scope.result.stats.map(function(stat) {
                         return stat.nbKO;
                     })
@@ -106,7 +107,7 @@ angular.module('results').controller('ResultsController', ['$scope', '$statePara
                     yAxis: 0,
                     type: 'area',
                     name: 'OK',
-                    color: 'hsla(240, 100%, 50%, 0.75)',
+                    color: 'hsla(208, 56%, 53%, 0.90)',
                     data: $scope.result.stats.map(function(stat) {
                         return stat.nbOK;
                     })
@@ -114,7 +115,7 @@ angular.module('results').controller('ResultsController', ['$scope', '$statePara
                     yAxis: 1,
                     type: 'spline',
                     name: 'Mean Time',
-                    color: 'hsl(120, 50%, 50%)',
+                    color: 'hsl(120, 39%, 54%)',
                     data: $scope.result.stats.map(function(stat) {
                         return stat.meanTime;
                     })
