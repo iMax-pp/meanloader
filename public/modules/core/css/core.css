@@ -5,10 +5,12 @@
 	display: none !important;
 }
 .ng-invalid.ng-dirty {
-	border-color: #fa787e;
+	border-color: #fa787e; /* fallback border-color for older browsers */
+	border-color: hsl(357, 93%, 73%);
 }
 .ng-valid.ng-dirty {
-	border-color: #78fa89;
+	border-color: #78fa89; /* fallback border-color for older browsers */
+	border-color: hsl(128, 93%, 73%);
 }
 
 .navbar {
@@ -24,7 +26,11 @@
 	font-size: 3em;
 }
 
-#statsChart {
+.bold {
+	font-weight: 500;
+}
+
+.chart {
 	height: 500px;
 	margin: 0 auto;
 }
