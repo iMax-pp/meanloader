@@ -12,9 +12,9 @@ var mongoose = require('mongoose'),
     _ = require('lodash');
 
 /**
- * Create a Launch Object
+ * Create a Launch Object and Call Next
  */
-var createLaunch = function(req, res) {
+var initLaunch = function(req, res, next) {
     var launch = new Launch({
         name: req.param('name'),
         server: req.param('server'),
@@ -30,9 +30,9 @@ var createLaunch = function(req, res) {
             });
         } else {
             res.jsonp(launch);
+            next(launch);
         }
     });
-    return launch;
 };
 
 /**
@@ -40,26 +40,27 @@ var createLaunch = function(req, res) {
  */
 exports.run = function(req, res) {
     // Init Launch
-    var launch = createLaunch(req, res);
-    // Run Load Testers
-    var eventEmitter = new events.EventEmitter();
-    for (var i = 0; i < launch.nb_users; i++) {
-        loadTester.run(i, launch, eventEmitter);
-    }
-    setTimeout(function() {
-        eventEmitter.emit('stopLoadTest');
-        eventEmitter.removeAllListeners('stopLoadTest');
-        Launch.update({
-            start_date: launch.start_date
-        }, {
-            in_progress: false
-        }, function(err, numberAffected, raw) {
-            if (err) {
-                console.error(new Error('Unable to update launch: ' + err));
-            }
-        });
-        results.create(launch);
-    }, launch.duration * 1000);
+    initLaunch(req, res, function(launch) {
+        // Run Load Testers
+        var eventEmitter = new events.EventEmitter();
+        for (var i = 0; i < launch.nb_users; i++) {
+            loadTester.run(i, launch, eventEmitter);
+        }
+        setTimeout(function() {
+            eventEmitter.emit('stopLoadTest');
+            eventEmitter.removeAllListeners('stopLoadTest');
+            Launch.update({
+                start_date: launch.start_date
+            }, {
+                in_progress: false
+            }, function(err, numberAffected, raw) {
+                if (err) {
+                    console.error(new Error('Unable to update launch: ' + err));
+                }
+            });
+            results.create(launch);
+        }, launch.duration * 1000);
+    });
 };
 
 /**
