@@ -6,8 +6,7 @@
 var mongoose = require('mongoose'),
     errorHandler = require('./errors.server.controller'),
     Hit = mongoose.model('Hit'),
-    Result = mongoose.model('Result'),
-    _ = require('lodash');
+    Result = mongoose.model('Result');
 
 exports.index = function(req, res) {
     res.render('index', {

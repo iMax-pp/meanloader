@@ -8,8 +8,7 @@ var mongoose = require('mongoose'),
     errorHandler = require('./errors.server.controller'),
     loadTester = require('./loadtester.server.controller'),
     results = require('./results.server.controller'),
-    Launch = mongoose.model('Launch'),
-    _ = require('lodash');
+    Launch = mongoose.model('Launch');
 
 /**
  * Create a Launch Object and Call Next
@@ -66,16 +65,14 @@ exports.run = function(req, res) {
 /**
  * List Running Launches
  */
-exports.listRunning = function(req, res) {
+exports.listRunning = function(next) {
     Launch.find({
         in_progress: true
     }).sort('-start_date').exec(function(err, results) {
         if (err) {
-            return res.status(500).send({
-                message: errorHandler.getErrorMessage(err)
-            });
+            console.log(err);
         } else {
-            res.jsonp(results);
+            next(results);
         }
     });
 };

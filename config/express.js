@@ -6,6 +6,7 @@
 var fs = require('fs'),
     http = require('http'),
     https = require('https'),
+    socketio = require('socket.io'),
     express = require('express'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
@@ -99,6 +100,12 @@ module.exports = function(db) {
     app.use(helmet.nosniff());
     app.use(helmet.ienoopen());
     app.disable('x-powered-by');
+
+    // Attach Socket.io
+    var server = http.createServer(app);
+    var io = socketio.listen(server);
+    app.set('socketio', io);
+    app.set('server', server);
 
     // Setting the app router and static folder
     app.use(express.static(path.resolve('./public')));

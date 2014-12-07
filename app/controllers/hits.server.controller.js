@@ -5,8 +5,7 @@
  */
 var mongoose = require('mongoose'),
     errorHandler = require('./errors.server.controller'),
-    Hit = mongoose.model('Hit'),
-    _ = require('lodash');
+    Hit = mongoose.model('Hit');
 
 /**
  * Create a Hit

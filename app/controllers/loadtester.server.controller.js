@@ -5,8 +5,7 @@
  */
 var process = require('process'),
     request = require('request'),
-    hits = require('./hits.server.controller.js'),
-    _ = require('lodash');
+    hits = require('./hits.server.controller.js');
 
 var runHit = function(id, launch, eventEmitter) {
     var url = 'http://' + launch.server + launch.api;

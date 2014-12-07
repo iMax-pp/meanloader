@@ -5,7 +5,7 @@ var ApplicationConfiguration = (function() {
     // Init module configuration options
     var applicationModuleName = 'meanloader';
     var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate', 'ngSanitize',
-        'ui.router', 'ui.bootstrap', 'ui.utils'
+        'ui.router', 'ui.bootstrap', 'ui.utils', 'btford.socket-io'
     ];
 
     // Add a new vertical module

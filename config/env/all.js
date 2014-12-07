@@ -25,9 +25,11 @@ module.exports = {
                 'public/lib/angular-ui-utils/ui-utils.js',
                 'public/lib/angular-bootstrap/ui-bootstrap.js',
                 'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+                'public/lib/angular-socket-io/socket.js',
+                'public/lib/socket.io-client/socket.io.js',
                 'public/lib/jquery/dist/jquery.js',
                 'public/lib/highcharts/highcharts.src.js',
-                'public/lib/highcharts/modules/exporting.js'
+                'public/lib/highcharts/modules/exporting.js',
             ]
         },
         css: [

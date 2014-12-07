@@ -18,6 +18,7 @@ module.exports = {
                 'public/lib/angular-ui-utils/ui-utils.min.js',
                 'public/lib/angular-bootstrap/ui-bootstrap.min.js',
                 'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
+                'public/lib/angular-socket-io/socket.min.js',
                 'public/lib/jquery/dist/jquery.min.js',
                 'public/lib/highcharts/highcharts.js'
             ]
