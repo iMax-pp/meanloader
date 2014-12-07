@@ -25,6 +25,11 @@ var createLaunch = function(req, res) {
     launch.save(function(err, newLaunch) {
         if (err) {
             console.error(new Error('Unable to create launch: ' + err));
+            res.status(500).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(launch);
         }
     });
     return launch;
@@ -36,7 +41,6 @@ var createLaunch = function(req, res) {
 exports.run = function(req, res) {
     // Init Launch
     var launch = createLaunch(req, res);
-    res.jsonp(launch);
     // Run Load Testers
     var eventEmitter = new events.EventEmitter();
     for (var i = 0; i < launch.nb_users; i++) {

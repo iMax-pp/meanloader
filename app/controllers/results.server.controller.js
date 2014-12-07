@@ -101,7 +101,9 @@ exports.read = function(req, res) {
     }], function(err, stats) {
         if (err) {
             console.error(new Error('Unable to find hits of given result: ' + err));
-            return;
+            return res.status(500).send({
+                message: errorHandler.getErrorMessage(err)
+            });
         }
         res.jsonp({
             result: req.result,
@@ -116,7 +118,7 @@ exports.read = function(req, res) {
 exports.list = function(req, res) {
     Result.find().populate('launch').sort('-launch').exec(function(err, results) {
         if (err) {
-            return res.status(400).send({
+            return res.status(500).send({
                 message: errorHandler.getErrorMessage(err)
             });
         } else {

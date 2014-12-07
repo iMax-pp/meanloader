@@ -5,6 +5,36 @@
 angular.module('results').controller('ResultsController', ['$scope', '$stateParams', 'Results',
     function($scope, $stateParams, Results) {
 
+        $scope.alerts = [];
+        $scope.closeAlert = function(index) {
+            $scope.alerts.splice(index, 1);
+        };
+        var addAlert = function(error) {
+            var alert;
+            if (error.data) {
+                alert = {
+                    type: 'danger',
+                    msg: error.data.message ? error.data.message : error.data
+                };
+            } else if (error.status === 0) {
+                alert = {
+                    type: 'danger',
+                    msg: 'Server is unavailable'
+                };
+            } else {
+                alert = {
+                    type: 'danger',
+                    msg: 'An error occurred (status ' + error.status + ')'
+                };
+            }
+            var noSuchAlert = $scope.alerts.filter(function(al) {
+                return al.msg === alert.msg;
+            }).length === 0;
+            if (noSuchAlert) {
+                $scope.alerts.push(alert);
+            }
+        };
+
         var indexOfById = function(array, item) {
             return array.map(function(it) {
                 return it._id;
@@ -24,6 +54,8 @@ angular.module('results').controller('ResultsController', ['$scope', '$statePara
                         $scope.results.unshift(result);
                     }
                 });
+            }, function(error) {
+                addAlert(error);
             });
         };
         $scope.find();
@@ -42,6 +74,8 @@ angular.module('results').controller('ResultsController', ['$scope', '$statePara
                 resultId: $stateParams.resultId
             }, function() {
                 drawChart();
+            }, function(error) {
+                addAlert(error);
             });
         };
 

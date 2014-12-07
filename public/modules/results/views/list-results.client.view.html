@@ -1,4 +1,9 @@
 <section data-ng-controller="ResultsController" data-ng-init="find()">
+    <div>
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+        <strong>Error:</strong> {{alert.msg}}
+        </alert>
+    </div>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>

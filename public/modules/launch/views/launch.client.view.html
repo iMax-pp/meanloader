@@ -1,4 +1,9 @@
 <section data-ng-controller="LaunchController" data-ng-init="find()">
+	<div>
+		<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+		<strong>Error:</strong> {{alert.msg}}
+		</alert>
+	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">Run Load Test</h3>
@@ -47,7 +52,7 @@
 					{{launch.name}}
 					<small>{{launch.server}}{{launch.api}}</small>
 					<br>
-					<small>Launched on {{launch.start_date | date:'medium'}}</small>
+					<small>Launched on {{launch.start_date | date:'d MMM yyyy, HH:mm:ss'}}</small>
 					</h4>
 					<div class="list-group-item-text col-sm-3">
 						<dl class="dl-horizontal">

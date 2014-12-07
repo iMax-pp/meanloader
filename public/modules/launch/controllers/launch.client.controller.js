@@ -4,6 +4,36 @@ angular.module('launch').controller('LaunchController', ['$scope', '$window',
     'Launch',
     function($scope, $window, Launch) {
 
+        $scope.alerts = [];
+        $scope.closeAlert = function(index) {
+            $scope.alerts.splice(index, 1);
+        };
+        var addAlert = function(error) {
+            var alert;
+            if (error.data) {
+                alert = {
+                    type: 'danger',
+                    msg: error.data.message ? error.data.message : error.data
+                };
+            } else if (error.status === 0) {
+                alert = {
+                    type: 'danger',
+                    msg: 'Server is unavailable'
+                };
+            } else {
+                alert = {
+                    type: 'danger',
+                    msg: 'An error occurred (status ' + error.status + ')'
+                };
+            }
+            var noSuchAlert = $scope.alerts.filter(function(al) {
+                return al.msg === alert.msg;
+            }).length === 0;
+            if (noSuchAlert) {
+                $scope.alerts.push(alert);
+            }
+        };
+
         var indexOfById = function(array, item) {
             return array.map(function(it) {
                 return it._id;
@@ -35,13 +65,18 @@ angular.module('launch').controller('LaunchController', ['$scope', '$window',
                     $scope.launches[indexOfById($scope.launches, launch)].progress =
                         (diff / launch.duration) * 100;
                 });
+            }, function(error) {
+                addAlert(error);
             });
         };
 
         // Run a Load Test
         $scope.run = function(launch) {
-            Launch.Run.get(launch);
-            $window.location.reload();
+            Launch.Run.get(launch, function() {
+                console.log('successfully launch load test ' + launch.name);
+            }, function(error) {
+                addAlert(error);
+            });
         };
 
         // Refresh data every half-second
