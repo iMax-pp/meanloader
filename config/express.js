@@ -22,12 +22,12 @@ var fs = require('fs'),
     consolidate = require('consolidate'),
     path = require('path');
 
-module.exports = function(db) {
+module.exports = function (db) {
     // Initialize express app
     var app = express();
 
     // Globbing model files
-    config.getGlobbedFiles('./app/models/**/*.js').forEach(function(modelPath) {
+    config.getGlobbedFiles('./app/models/**/*.js').forEach(function (modelPath) {
         require(path.resolve(modelPath));
     });
 
@@ -39,14 +39,14 @@ module.exports = function(db) {
     app.locals.cssFiles = config.getCSSAssets();
 
     // Passing the request url to environment locals
-    app.use(function(req, res, next) {
+    app.use(function (req, res, next) {
         res.locals.url = req.protocol + '://' + req.headers.host + req.url;
         next();
     });
 
     // Should be placed before express.static
     app.use(compress({
-        filter: function(req, res) {
+        filter: function (req, res) {
             return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
         },
         level: 9
@@ -111,12 +111,12 @@ module.exports = function(db) {
     app.use(express.static(path.resolve('./public')));
 
     // Globbing routing files
-    config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
+    config.getGlobbedFiles('./app/routes/**/*.js').forEach(function (routePath) {
         require(path.resolve(routePath))(app);
     });
 
     // Assume 'not found' in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
-    app.use(function(err, req, res, next) {
+    app.use(function (err, req, res, next) {
         // If the error object doesn't exists
         if (!err) return next();
 
@@ -130,7 +130,7 @@ module.exports = function(db) {
     });
 
     // Assume 404 since no middleware responded
-    app.use(function(req, res) {
+    app.use(function (req, res) {
         res.status(404).render('404', {
             url: req.originalUrl,
             error: 'Not Found'

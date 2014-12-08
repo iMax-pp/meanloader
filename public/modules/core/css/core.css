@@ -1,36 +1,42 @@
 .undecorated-link:hover {
-	text-decoration: none;
+    text-decoration: none;
 }
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-	display: none !important;
+    display: none !important;
 }
+
 .ng-invalid.ng-dirty {
-	border-color: #fa787e; /* fallback border-color for older browsers */
-	border-color: hsl(357, 93%, 73%);
+    border-color: #fa787e; /* fallback border-color for older browsers */
+    border-color: hsl(357, 93%, 73%);
 }
+
 .ng-valid.ng-dirty {
-	border-color: #78fa89; /* fallback border-color for older browsers */
-	border-color: hsl(128, 93%, 73%);
+    border-color: #78fa89; /* fallback border-color for older browsers */
+    border-color: hsl(128, 93%, 73%);
 }
 
 .navbar {
-	border-radius: 0;
+    border-radius: 0;
 }
+
 .page-header {
-	margin-top: 0;
+    margin-top: 0;
 }
+
 .jumbotron {
-	padding: 1em 0 1.5em;
+    padding: 1em 0 1.5em;
 }
+
 .jumbotron h1 {
-	font-size: 3em;
+    font-size: 3em;
 }
 
 .bold {
-	font-weight: 500;
+    font-weight: 500;
 }
 
 .chart {
-	height: 500px;
-	margin: 0 auto;
+    height: 500px;
+    margin: 0 auto;
 }

@@ -1,8 +1,8 @@
 'use strict';
 
-(function() {
+(function () {
     // Results Controller Spec
-    describe('Results Controller Tests', function() {
+    describe('Results Controller Tests', function () {
         // Initialize global variables
         var ResultsController,
             scope,
@@ -15,11 +15,11 @@
         // the responses exactly. To solve the problem, we define a new toEqualData Jasmine matcher.
         // When the toEqualData matcher compares two objects, it takes only object properties into
         // account and ignores methods.
-        beforeEach(function() {
+        beforeEach(function () {
             jasmine.addMatchers({
-                toEqualData: function(util, customEqualityTesters) {
+                toEqualData: function (util, customEqualityTesters) {
                     return {
-                        compare: function(actual, expected) {
+                        compare: function (actual, expected) {
                             return {
                                 pass: angular.equals(actual, expected)
                             };
@@ -35,8 +35,8 @@
         // The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
         // This allows us to inject a service but then attach it to a variable
         // with the same name as the service.
-        beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_,
-            _$httpBackend_) {
+        beforeEach(inject(function ($controller, $rootScope, _$location_, _$stateParams_,
+                                    _$httpBackend_) {
             // Set a new global scope
             scope = $rootScope.$new();
 
@@ -53,7 +53,7 @@
 
         it(
             '$scope.find() should create an array with at least one Result object fetched from XHR',
-            inject(function(Results) {
+            inject(function (Results) {
                 // Create sample Result using the Results service
                 var sampleResult = new Results({
                     name: 'New Result'
@@ -75,7 +75,7 @@
 
         it(
             '$scope.findOne() should create an array with one Result object fetched from XHR using a resultId URL parameter',
-            inject(function(Results) {
+            inject(function (Results) {
                 // Define a sample Result object
                 var sampleResult = new Results({
                     name: 'New Result'

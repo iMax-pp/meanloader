@@ -1,40 +1,40 @@
 <section data-ng-controller="ResultsController" data-ng-init="find()">
     <div>
         <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
-        <strong>Error:</strong> {{alert.msg}}
+            <strong>Error:</strong> {{alert.msg}}
         </alert>
     </div>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
-                <tr>
-                    <th></th>
-                    <th>Launch</th>
-                    <th># Users</th>
-                    <th>Duration</th>
-                    <th># Hits</th>
-                    <th>Mean Time</th>
-                    <th>90 Percentile</th>
-                </tr>
+            <tr>
+                <th></th>
+                <th>Launch</th>
+                <th># Users</th>
+                <th>Duration</th>
+                <th># Hits</th>
+                <th>Mean Time</th>
+                <th>90 Percentile</th>
+            </tr>
             </thead>
             <tbody>
-                <tr data-ng-repeat="result in results" data-ng-class="{active: selected}">
-                    <td><input type="checkbox" data-ng-model="selected"></td>
-                    <td>
-                        <a href="#!/results/{{result._id}}">
-                            <strong>{{result.launch.name}}</strong>
-                        </a>
-                        &ndash; {{result.launch.start_date | date:'dd/MM/yyyy H:mm'}}<br>
-                        <small>{{result.launch.server}}{{result.launch.api}}</small>
-                    </td>
-                    <td>{{result.launch.nb_users}}</td>
-                    <td>{{result.launch.duration/60}} min</td>
-                    <td data-ng-class="{'text-danger': result.nb_ko > 0, bold: result.nb_ko > 0}">
-                        {{result.nb_hits | number:0}} ({{result.nb_ko | number:0}} KO)
-                    </td>
-                    <td>{{result.mean_time | number:2}} ms</td>
-                    <td>{{result.ninety_percentile | number:2}} ms</td>
-                </tr>
+            <tr data-ng-repeat="result in results" data-ng-class="{active: selected}">
+                <td><input type="checkbox" data-ng-model="selected"></td>
+                <td>
+                    <a href="#!/results/{{result._id}}">
+                        <strong>{{result.launch.name}}</strong>
+                    </a>
+                    &ndash; {{result.launch.start_date | date:'dd/MM/yyyy H:mm'}}<br>
+                    <small>{{result.launch.server}}{{result.launch.api}}</small>
+                </td>
+                <td>{{result.launch.nb_users}}</td>
+                <td>{{result.launch.duration/60}} min</td>
+                <td data-ng-class="{'text-danger': result.nb_ko > 0, bold: result.nb_ko > 0}">
+                    {{result.nb_hits | number:0}} ({{result.nb_ko | number:0}} KO)
+                </td>
+                <td>{{result.mean_time | number:2}} ms</td>
+                <td>{{result.ninety_percentile | number:2}} ms</td>
+            </tr>
             </tbody>
         </table>
     </div>

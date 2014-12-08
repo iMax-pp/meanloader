@@ -10,13 +10,13 @@ var mongoose = require('mongoose'),
 /**
  * Create a Hit
  */
-exports.create = function(launch, date, respTime, status) {
+exports.create = function (launch, date, respTime, status) {
     Hit.create({
         launch: launch,
         date: date,
         duration: respTime,
         status: status
-    }, function(err, hit) {
+    }, function (err) {
         if (err) {
             console.error(new Error('Unable to create hit: ' + err));
         }
@@ -26,16 +26,15 @@ exports.create = function(launch, date, respTime, status) {
 /**
  * List of Hits by Launcher
  */
-exports.list = function(req, res) {
+exports.list = function (req, res) {
     Hit.find({
         'launch': req.param('launchid')
-    }).sort('-date').exec(function(err, results) {
+    }).sort('-date').exec(function (err, results) {
         if (err) {
             return res.status(500).send({
                 message: errorHandler.getErrorMessage(err)
             });
-        } else {
-            res.jsonp(results);
         }
+        res.jsonp(results);
     });
 };

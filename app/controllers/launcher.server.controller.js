@@ -13,7 +13,7 @@ var mongoose = require('mongoose'),
 /**
  * Create a Launch Object and Call Next
  */
-var initLaunch = function(req, res, next) {
+var initLaunch = function (req, res, next) {
     var launch = new Launch({
         name: req.param('name'),
         server: req.param('server'),
@@ -21,7 +21,7 @@ var initLaunch = function(req, res, next) {
         duration: req.param('duration', 10) * 60, // In seconds
         nb_users: req.param('nb_users', 1)
     });
-    launch.save(function(err, newLaunch) {
+    launch.save(function (err) {
         if (err) {
             console.error(new Error('Unable to create launch: ' + err));
             res.status(500).send({
@@ -37,22 +37,23 @@ var initLaunch = function(req, res, next) {
 /**
  * Run Launcher
  */
-exports.run = function(req, res) {
+exports.run = function (req, res) {
     // Init Launch
-    initLaunch(req, res, function(launch) {
+    initLaunch(req, res, function (launch) {
         // Run Load Testers
-        var eventEmitter = new events.EventEmitter();
-        for (var i = 0; i < launch.nb_users; i++) {
+        var eventEmitter = new events.EventEmitter(),
+            i = 0;
+        for (i; i < launch.nb_users; i += 1) {
             loadTester.run(i, launch, eventEmitter);
         }
-        setTimeout(function() {
+        setTimeout(function () {
             eventEmitter.emit('stopLoadTest');
             eventEmitter.removeAllListeners('stopLoadTest');
             Launch.update({
                 start_date: launch.start_date
             }, {
                 in_progress: false
-            }, function(err, numberAffected, raw) {
+            }, function (err) {
                 if (err) {
                     console.error(new Error('Unable to update launch: ' + err));
                 }
@@ -65,10 +66,10 @@ exports.run = function(req, res) {
 /**
  * List Running Launches
  */
-exports.listRunning = function(next) {
+exports.listRunning = function (next) {
     Launch.find({
         in_progress: true
-    }).sort('-start_date').exec(function(err, results) {
+    }).sort('-start_date').exec(function (err, results) {
         if (err) {
             console.log(err);
         } else {

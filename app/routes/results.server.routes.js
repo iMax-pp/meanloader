@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(app) {
+module.exports = function (app) {
     var results = require('../../app/controllers/results.server.controller');
 
     app.route('/').get(results.index);

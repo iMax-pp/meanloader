@@ -2,12 +2,15 @@
 
 // Results service used to communicate Results REST endpoints
 angular.module('results').factory('Results', ['$resource',
-    function($resource) {
+    function ($resource) {
         return $resource('results/:resultId', {
             resultId: '@_id'
         }, {
             get: {
-                transformResponse: function(data, headersGetter) {
+                transformResponse: function (data, headersGetter) {
+                    if (data === '') {
+                        return '';
+                    }
                     if (headersGetter('Content-Type').indexOf('text/html') !== -1) {
                         return new DOMParser().parseFromString(data, 'text/html')
                             .body.querySelector('.container').innerText;
@@ -17,7 +20,10 @@ angular.module('results').factory('Results', ['$resource',
             },
             query: {
                 isArray: true,
-                transformResponse: function(data, headersGetter) {
+                transformResponse: function (data, headersGetter) {
+                    if (data === '') {
+                        return '';
+                    }
                     if (headersGetter('Content-Type').indexOf('text/html') !== -1) {
                         return new DOMParser().parseFromString(data, 'text/html')
                             .body.querySelector('.container').innerText;
@@ -26,5 +32,4 @@ angular.module('results').factory('Results', ['$resource',
                 }
             }
         });
-    }
-]);
+    }]);

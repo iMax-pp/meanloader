@@ -29,7 +29,7 @@ module.exports = {
                 'public/lib/socket.io-client/socket.io.js',
                 'public/lib/jquery/dist/jquery.js',
                 'public/lib/highcharts/highcharts.src.js',
-                'public/lib/highcharts/modules/exporting.js',
+                'public/lib/highcharts/modules/exporting.js'
             ]
         },
         css: [

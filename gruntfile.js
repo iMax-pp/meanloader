@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     // Unified Watch Object
     var watchFiles = {
         serverViews: ['app/views/**/*.*'],
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
             clientViews: {
                 files: watchFiles.clientViews,
                 options: {
-                    livereload: true,
+                    livereload: true
                 }
             },
             clientJS: {
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
         },
         csslint: {
             options: {
-                csslintrc: '.csslintrc',
+                csslintrc: '.csslintrc'
             },
             all: {
                 src: watchFiles.clientCSS
@@ -150,8 +150,7 @@ module.exports = function(grunt) {
 
     // A Task for loading the configuration object
     grunt.task.registerTask('loadConfig', 'Task that loads the config into a grunt option.',
-        function() {
-            var init = require('./config/init')();
+        function () {
             var config = require('./config/config');
 
             grunt.config.set('applicationJavaScriptFiles', config.assets.js);
