@@ -71,7 +71,7 @@ angular.module('results').controller('ResultsController', ['$scope', '$statePara
         // Draw Result stats chart
         var drawChart = function () {
             $('#statsChart').highcharts({
-                title: {text: ''},
+                title: {text: 'Statistics'},
                 xAxis: {
                     title: {enabled: false},
                     labels: {

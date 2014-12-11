@@ -14,7 +14,9 @@ module.exports = {
         lib: {
             css: [
                 'public/lib/bootstrap/dist/css/bootstrap.css',
-                'public/lib/bootstrap/dist/css/bootstrap-theme.css'
+                'public/lib/bootstrap-material-design/dist/css/material.min.css',
+                'public/lib/bootstrap-material-design/dist/css/material-wfont.min.css',
+                'public/lib/bootstrap-material-design/dist/css/ripples.min.css'
             ],
             js: [
                 'public/lib/angular/angular.js',
@@ -29,7 +31,9 @@ module.exports = {
                 'public/lib/socket.io-client/socket.io.js',
                 'public/lib/jquery/dist/jquery.js',
                 'public/lib/highcharts/highcharts.src.js',
-                'public/lib/highcharts/modules/exporting.js'
+                'public/lib/highcharts/modules/exporting.js',
+                'public/lib/bootstrap-material-design/dist/js/material.min.js',
+                'public/lib/bootstrap-material-design/dist/js/ripples.js'
             ]
         },
         css: [

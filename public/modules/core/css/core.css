@@ -24,10 +24,6 @@
     margin-top: 0;
 }
 
-.jumbotron {
-    padding: 1em 0 1.5em;
-}
-
 .jumbotron h1 {
     font-size: 3em;
 }
@@ -37,6 +33,6 @@
 }
 
 .chart {
-    height: 500px;
+    height: 600px;
     margin: 0 auto;
 }
