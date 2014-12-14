@@ -7,17 +7,11 @@
 }
 
 .ng-invalid.ng-dirty {
-    border-color: #fa787e; /* fallback border-color for older browsers */
-    border-color: hsl(357, 93%, 73%);
+    border-color: #fa787e; /* border-color: hsl(357, 93%, 73%); */
 }
 
 .ng-valid.ng-dirty {
-    border-color: #78fa89; /* fallback border-color for older browsers */
-    border-color: hsl(128, 93%, 73%);
-}
-
-.navbar {
-    border-radius: 0;
+    border-color: #78fa89; /* border-color: hsl(128, 93%, 73%); */
 }
 
 .page-header {

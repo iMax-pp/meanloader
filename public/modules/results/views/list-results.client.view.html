@@ -21,7 +21,7 @@
             <tr data-ng-repeat="result in results" data-ng-class="{active: selected}">
                 <td><input type="checkbox" data-ng-model="selected"></td>
                 <td>
-                    <a class="text-danger" href="#!/results/{{result._id}}">
+                    <a class="text-info" href="#!/results/{{result._id}}">
                         <strong>{{result.launch.name}}</strong>
                     </a>
                     &ndash; {{result.launch.start_date | date:'dd/MM/yyyy H:mm'}}<br>
@@ -39,6 +39,6 @@
         </table>
     </div>
     <div>
-        <button type="submit" class="btn btn-danger pull-right disabled">Compare</button>
+        <button type="submit" class="btn btn-info pull-right disabled">Compare</button>
     </div>
 </section>
