@@ -10,7 +10,7 @@
         </div>
         <form class="form-horizontal panel-body" role="form">
             <div class="form-group">
-                <label for="name" class="col-sm-2 control-label">Launch Name</label>
+                <label class="col-sm-2 control-label">Launch Name</label>
 
                 <div class="col-sm-8">
                     <input type="text" class="form-control"
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="server" class="col-sm-2 control-label">Server</label>
+                <label class="col-sm-2 control-label">Server</label>
 
                 <div class="col-sm-4">
                     <input type="text" class="form-control"
@@ -30,15 +30,27 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="nb_users" class="col-sm-2 control-label">Load Parameters</label>
+                <label class="col-sm-2 control-label">Load Parameters</label>
 
-                <div class="col-sm-2">
+                <label class="col-sm-1 control-label"># Users</label>
+
+                <div class="col-sm-1">
                     <input type="number" class="form-control"
-                           ng-model="launch.nb_users" placeholder="# Users">
+                           ng-model="launch.nb_users" placeholder="1">
                 </div>
-                <div class="col-sm-2">
+
+                <label class="col-sm-2 control-label">Duration (min)</label>
+
+                <div class="col-sm-1">
                     <input type="number" class="form-control"
-                           ng-model="launch.duration" placeholder="Duration (min)">
+                           ng-model="launch.duration" placeholder="10" step="any">
+                </div>
+
+                <label class="col-sm-2 control-label">Interval (ms)</label>
+
+                <div class="col-sm-1">
+                    <input type="number" class="form-control"
+                           ng-model="launch.interval" placeholder="20">
                 </div>
             </div>
             <div class="form-group">
@@ -61,6 +73,8 @@
                         <dl class="dl-horizontal">
                             <dt>Duration</dt>
                             <dd>{{launch.duration/60}} min</dd>
+                            <dt>Interval</dt>
+                            <dd>{{launch.interval}} ms</dd>
                             <dt>Users</dt>
                             <dd>{{launch.nb_users}}</dd>
                         </dl>

@@ -15,7 +15,9 @@ var runHit = function (id, launch, eventEmitter) {
         var diff = proc.hrtime(start),
             respTime = (diff[0] * 1e9 + diff[1]) / 1000000.0,
             status = !error && resp.statusCode === 200 ? 'OK' : 'KO';
-        eventEmitter.emit('runHit' + id);
+        setTimeout(function () {
+            eventEmitter.emit('runHit' + id);
+        }, launch.interval);
         hits.create(launch, date, respTime, status);
     });
 };

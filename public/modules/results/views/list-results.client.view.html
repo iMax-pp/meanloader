@@ -12,6 +12,7 @@
                 <th>Launch</th>
                 <th># Users</th>
                 <th>Duration</th>
+                <th>Interval</th>
                 <th># Hits</th>
                 <th>Mean Time</th>
                 <th>90 Percentile</th>
@@ -29,6 +30,7 @@
                 </td>
                 <td>{{result.launch.nb_users}}</td>
                 <td>{{result.launch.duration/60}} min</td>
+                <td>{{result.launch.interval}} ms</td>
                 <td data-ng-class="{'text-danger': result.nb_ko > 0, bold: result.nb_ko > 0}">
                     {{result.nb_hits | number:0}} ({{result.nb_ko | number:0}} KO)
                 </td>

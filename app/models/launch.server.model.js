@@ -30,6 +30,10 @@ var LaunchSchema = new Schema({
         type: Number,
         required: 'A Launch requires a Duration'
     },
+    interval: {
+        type: Number,
+        required: 'A Launch requires an Interval'
+    },
     nb_users: {
         type: Number,
         required: 'A Launch requires a Number of Users'
