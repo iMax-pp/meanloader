@@ -22,6 +22,14 @@
     font-size: 3em;
 }
 
+.btn.btn-fab {
+    font-size: 28px;
+}
+
+.overlay-icon {
+    margin-top: -50px;
+}
+
 .bold {
     font-weight: 500;
 }

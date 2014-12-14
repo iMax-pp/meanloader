@@ -53,44 +53,44 @@
                            ng-model="launch.interval" placeholder="20">
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-sm-offset-9 col-sm-1">
-                    <button type="submit" class="btn btn-info" ng-click="run(launch)">Launch</button>
-                </div>
-            </div>
         </form>
+    </div>
+    <div class="form-group col-sm-offset-11 overlay-icon">
+        <button type="submit" class="btn btn-fab btn-raised btn-info" ng-click="run(launch)">
+            <i class="icon mdi-navigation-chevron-right"></i>
+        </button>
+    </div>
 
-        <ul class="list-group">
-            <li data-ng-repeat="launch in launches" class="list-group-item">
-                <div class="row">
-                    <h4 class="list-group-item-heading col-sm-4">
-                        {{launch.name}}
-                        <small>{{launch.server}}{{launch.api}}</small>
-                        <br>
-                        <small>Launched on {{launch.start_date | date:'d MMM yyyy, HH:mm:ss'}}</small>
-                    </h4>
-                    <div class="list-group-item-text col-sm-3">
-                        <dl class="dl-horizontal">
-                            <dt>Duration</dt>
-                            <dd>{{launch.duration/60}} min</dd>
-                            <dt>Interval</dt>
-                            <dd>{{launch.interval}} ms</dd>
-                            <dt>Users</dt>
-                            <dd>{{launch.nb_users}}</dd>
-                        </dl>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-info active" role="progressbar"
-                                 style="width: {{launch.progress | number:2}}%;"
-                                 aria-valuenow="{{launch.progress | number:2}}"
-                                 aria-valuemin="0" aria-valuemax="100">
-                                {{launch.progress | number:0}}%
-                            </div>
+    <ul class="list-group">
+        <li data-ng-repeat="launch in launches" class="list-group-item">
+            <div class="row">
+                <h4 class="list-group-item-heading col-sm-4">
+                    {{launch.name}}
+                    <small>{{launch.server}}{{launch.api}}</small>
+                    <br>
+                    <small>Launched on {{launch.start_date | date:'d MMM yyyy, HH:mm:ss'}}</small>
+                </h4>
+                <div class="list-group-item-text col-sm-3">
+                    <dl class="dl-horizontal">
+                        <dt>Duration</dt>
+                        <dd>{{launch.duration/60}} min</dd>
+                        <dt>Interval</dt>
+                        <dd>{{launch.interval}} ms</dd>
+                        <dt>Users</dt>
+                        <dd>{{launch.nb_users}}</dd>
+                    </dl>
+                </div>
+                <div class="col-sm-4">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-info active" role="progressbar"
+                             style="width: {{launch.progress | number:2}}%;"
+                             aria-valuenow="{{launch.progress | number:2}}"
+                             aria-valuemin="0" aria-valuemax="100">
+                            {{launch.progress | number:0}}%
                         </div>
                     </div>
                 </div>
-            </li>
-        </ul>
-    </div>
+            </div>
+        </li>
+    </ul>
 </section>
