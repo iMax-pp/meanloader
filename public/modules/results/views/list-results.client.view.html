@@ -1,4 +1,4 @@
-<section data-ng-controller="ResultsController" data-ng-init="find()">
+<section data-ng-controller="ResultsController" data-ng-init="find(1, resultsPerPage)">
     <div>
         <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
             <strong>Error:</strong> {{alert.msg}}
@@ -40,6 +40,9 @@
             </tbody>
         </table>
     </div>
+    <pagination total-items="nbResults" items-per-page="resultsPerPage" ng-model="currentPage"
+                ng-change="find(currentPage, resultsPerPage)" class="pagination pagination-sm" boundary-links="true"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
     <div>
         <button type="submit" class="btn btn-info pull-right disabled">Compare</button>
     </div>

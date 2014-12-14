@@ -35,34 +35,26 @@ angular.module('results').controller('ResultsController', ['$scope', '$statePara
             }
         };
 
-        var indexOfById = function (array, item) {
-            return array.map(function (it) {
-                return it._id;
-            }).indexOf(item._id);
-        };
-
         // Find a list of Results
         $scope.results = [];
-        $scope.find = function () {
-            var results = Results.query(function () {
-                if ($scope.results.length === 0) {
-                    $scope.results = results;
-                    return;
-                }
-                results.forEach(function (result) {
-                    if (indexOfById($scope.results, result) === -1) {
-                        $scope.results.unshift(result);
-                    }
-                });
+        $scope.resultsPerPage = 10;
+        Results.count.get(function (result) {
+            $scope.nbResults = result.count;
+        });
+        $scope.find = function (page, limit) {
+            var results = Results.result.query({
+                page: page,
+                limit: limit
+            }, function () {
+                $scope.results = results;
             }, function (error) {
                 addAlert(error);
             });
         };
-        $scope.find();
 
         // Refresh data every minute
         var refresh = setInterval(function () {
-            $scope.find();
+            $scope.find($scope.currentPage, $scope.resultsPerPage);
         }, 60000);
         $scope.$on('$destroy', function () {
             clearInterval(refresh);
@@ -136,7 +128,7 @@ angular.module('results').controller('ResultsController', ['$scope', '$statePara
 
         // Find existing Result
         $scope.findOne = function () {
-            $scope.result = Results.get({
+            $scope.result = Results.result.get({
                 resultId: $stateParams.resultId
             }, function () {
                 drawChart();

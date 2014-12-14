@@ -6,6 +6,7 @@ module.exports = function (app) {
     app.route('/').get(results.index);
 
     app.route('/results').get(results.list);
+    app.route('/nb_results').get(results.count);
 
     app.route('/results/:resultId').get(results.read);
     app.param('resultId', results.resultByID);

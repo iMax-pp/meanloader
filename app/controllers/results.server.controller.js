@@ -88,10 +88,26 @@ exports.read = function (req, res) {
 };
 
 /**
+ * Count Results
+ */
+exports.count = function (req, res) {
+    Result.count().exec(function (err, count) {
+        if (err) {
+            return res.status(500).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        }
+        res.jsonp(count);
+    });
+};
+
+/**
  * List of Results
  */
 exports.list = function (req, res) {
-    Result.find().populate('launch').sort('-launch').exec(function (err, results) {
+    var page = req.param('page'),
+        limit = req.param('limit');
+    Result.find().populate('launch').sort('-launch').skip((page - 1) * limit).limit(limit).exec(function (err, results) {
         if (err) {
             return res.status(500).send({
                 message: errorHandler.getErrorMessage(err)
