@@ -44,6 +44,7 @@ exports.run = function (req, res) {
         // Run Load Testers
         var eventEmitter = new events.EventEmitter(),
             i = 0;
+        eventEmitter.setMaxListeners(0); // Unlimited event listeners
         for (i; i < launch.nb_users; i += 1) {
             loadTester.run(i, launch, eventEmitter);
         }
