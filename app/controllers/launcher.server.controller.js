@@ -19,7 +19,7 @@ var initLaunch = function (req, res, next) {
         server: req.param('server'),
         api: req.param('api'),
         duration: req.param('duration', 10) * 60, // In seconds (default: 10s)
-        interval: req.param('interval', 20), // In milliseconds (default: 20ms)
+        interval: req.param('interval', 50), // In milliseconds (default: 50ms)
         nb_users: req.param('nb_users', 1)
     });
     launch.save(function (err) {
