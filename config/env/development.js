@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-    db: 'mongodb://192.168.33.10:27017/meanloader-dev',
-    app: {
-        title: 'MeanLoader - Development Environment'
-    }
+  db: 'mongodb://192.168.59.103:27017/meanloader-dev',
+  app: {
+    title: 'MeanLoader - Development Environment'
+  }
 };

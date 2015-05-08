@@ -1,49 +1,49 @@
 <section data-ng-controller="ResultsController" data-ng-init="findOne()">
-    <div>
-        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
-            <strong>Error:</strong> {{alert.msg}}
-        </alert>
+  <div>
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+      <strong>Error:</strong> {{alert.msg}}
+    </alert>
+  </div>
+  <div class="page-header">
+    <h1>
+      {{result.result.launch.name}}
+      <small>{{result.result.launch.server}}{{result.result.launch.api}}</small>
+    </h1>
+    <small>
+      <em class="text-muted">
+        Launched on
+        <span data-ng-bind="result.result.launch.start_date | date:'mediumDate'"></span>
+      </em>
+    </small>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <dl class="dl-horizontal">
+        <dt>Nb Hits</dt>
+        <dd>{{result.result.nb_hits | number:0}} ({{result.result.nb_ko | number:0}} KO)</dd>
+        <dt>Mean Time</dt>
+        <dd>{{result.result.mean_time | number:2}} ms</dd>
+        <dt>90 Percentile</dt>
+        <dd>{{result.result.ninety_percentile | number:2}} ms</dd>
+      </dl>
     </div>
-    <div class="page-header">
-        <h1>
-            {{result.result.launch.name}}
-            <small>{{result.result.launch.server}}{{result.result.launch.api}}</small>
-        </h1>
-        <small>
-            <em class="text-muted">
-                Launched on
-                <span data-ng-bind="result.result.launch.start_date | date:'mediumDate'"></span>
-            </em>
-        </small>
+    <div class="col-sm-3">
+      <dl class="dl-horizontal">
+        <dt>Duration</dt>
+        <dd>{{result.result.launch.duration/60}} min</dd>
+        <dt>Interval</dt>
+        <dd>{{result.result.launch.interval}} ms</dd>
+        <dt>Users</dt>
+        <dd>{{result.result.launch.nb_users}}</dd>
+      </dl>
     </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <dl class="dl-horizontal">
-                <dt>Nb Hits</dt>
-                <dd>{{result.result.nb_hits | number:0}} ({{result.result.nb_ko | number:0}} KO)</dd>
-                <dt>Mean Time</dt>
-                <dd>{{result.result.mean_time | number:2}} ms</dd>
-                <dt>90 Percentile</dt>
-                <dd>{{result.result.ninety_percentile | number:2}} ms</dd>
-            </dl>
-        </div>
-        <div class="col-sm-3">
-            <dl class="dl-horizontal">
-                <dt>Duration</dt>
-                <dd>{{result.result.launch.duration/60}} min</dd>
-                <dt>Interval</dt>
-                <dd>{{result.result.launch.interval}} ms</dd>
-                <dt>Users</dt>
-                <dd>{{result.result.launch.nb_users}}</dd>
-            </dl>
-        </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Statistics</h3>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Statistics</h3>
-        </div>
-        <div class="panel-body">
-            <div id="statsChart" class="chart"></div>
-        </div>
+    <div class="panel-body">
+      <div id="statsChart" class="chart"></div>
     </div>
+  </div>
 </section>

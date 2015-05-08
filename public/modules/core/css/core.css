@@ -1,40 +1,33 @@
 .undecorated-link:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
-
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-    display: none !important;
+  display: none !important;
 }
-
 .ng-invalid.ng-dirty {
-    border-color: #fa787e; /* border-color: hsl(357, 93%, 73%); */
+  border-color: #fa787e;
+  /* border-color: hsl(357, 93%, 73%); */
 }
-
 .ng-valid.ng-dirty {
-    border-color: #78fa89; /* border-color: hsl(128, 93%, 73%); */
+  border-color: #78fa89;
+  /* border-color: hsl(128, 93%, 73%); */
 }
-
 .page-header {
-    margin-top: 0;
+  margin-top: 0;
 }
-
 .jumbotron h1 {
-    font-size: 3em;
+  font-size: 3em;
 }
-
 .btn.btn-fab {
-    font-size: 28px;
+  font-size: 28px;
 }
-
 .overlay-icon {
-    margin-top: -50px;
+  margin-top: -50px;
 }
-
 .bold {
-    font-weight: 500;
+  font-weight: 500;
 }
-
 .chart {
-    height: 600px;
-    margin: 0 auto;
+  height: 600px;
+  margin: 0 auto;
 }
