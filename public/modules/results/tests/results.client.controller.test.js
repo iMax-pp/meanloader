@@ -55,15 +55,16 @@
             '$scope.find() should create an array with at least one Result object fetched from XHR',
             inject(function (Results) {
                 // Create sample Result using the Results service
-                var sampleResult = new Results({
+                var sampleResult = {
                     name: 'New Result'
-                });
+                };
 
                 // Create a sample Results array that includes the new Result
                 var sampleResults = [sampleResult];
 
                 // Set GET response
-                $httpBackend.expectGET('results').respond(sampleResults);
+                $httpBackend.expectGET('nb_results').respond(200, '1', {'Content-Type': 'application/json'});
+                $httpBackend.expectGET('results').respond(200, sampleResults, {'Content-Type': 'application/json'});
 
                 // Run controller functionality
                 scope.find();
@@ -77,16 +78,17 @@
             '$scope.findOne() should create an array with one Result object fetched from XHR using a resultId URL parameter',
             inject(function (Results) {
                 // Define a sample Result object
-                var sampleResult = new Results({
-                    name: 'New Result'
-                });
+                var sampleResult = {
+                    name: 'New Result',
+                    stats: [{nbOK: 1, nbKO: 1, meanTime: 0.2}]
+                };
 
                 // Set the URL parameter
                 $stateParams.resultId = '525a8422f6d0f87f0e407a33';
 
                 // Set GET response
-                $httpBackend.expectGET(/results\/([0-9a-fA-F]{24})$/).respond(
-                    sampleResult);
+                $httpBackend.expectGET('nb_results').respond(200, '1', {'Content-Type': 'application/json'});
+                $httpBackend.expectGET(/results\/([0-9a-fA-F]{24})$/).respond(200, sampleResult, {'Content-Type': 'application/json'});
 
                 // Run controller functionality
                 scope.findOne();
